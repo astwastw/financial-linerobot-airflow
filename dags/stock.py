@@ -27,17 +27,17 @@ token='/GzF5FaWE84PdvoEueGli99HQ8ULLONIXU34HV8zQQgTqhIla+yFVo62cwBCK2gkr5ATBRFyl
 #自己的ID
 ID='Uae7bf560936f7d9e5bfc6c1aafffd917'
 
-########### dag所有參數，就放在這裡面 ###########
+########### dag所有參數，就放在這裡面 (設定airflow的設定檔)###########
 args = {
     'owner': 'cheating', #這個dag的擁有者
     'start_date': airflow.utils.dates.days_ago(0) #開啟時，設定往前幾天開始執行
 }
 
-########### dag設定檔 ###########
+########### dag設定檔 (設定airflow的設定檔)###########
 dag = DAG(
     dag_id='Stock', #dag的名稱
     default_args=args, #把上方的參數放進去
-    schedule_interval='10 * * * * *') #多久執行一次
+    schedule_interval='10 * * * * *') #多久執行一次  (十秒執行一次) https://crontab.guru/
 
 ########### 查看當前價格 ###########
 def look_price(stock='3624', bs='>', price=31):
@@ -67,8 +67,8 @@ data=[{'stock' : '2002','bs' : '<', 'price': 20},
 for i in data: #把一個一個股票丟進去執行
     task = PythonOperator(
         task_id='stock'+i['stock'], #設定dag小分支的名稱
-        python_callable=look_price, #指定要執行的function
-        op_kwargs={'stock' : i['stock'],'bs' : i['bs'], 'price': i['price']}, #丟參數進去function
+        python_callable=look_price, #指定要執行的function (一定藥用function的方式執行)
+        op_kwargs={'stock' : i['stock'].strip(),'bs' : i['bs'].strip(), 'price': i['price'].strip()}, #丟參數進去function
         dag=dag #把上方的設定檔案丟入主程式
         )
     
