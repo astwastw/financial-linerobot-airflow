@@ -68,7 +68,7 @@ for i in data: #把一個一個股票丟進去執行
     task = PythonOperator(
         task_id='stock'+i['stock'], #設定dag小分支的名稱
         python_callable=look_price, #指定要執行的function (一定藥用function的方式執行)
-        op_kwargs={'stock' : i['stock'].strip(),'bs' : i['bs'].strip(), 'price': i['price'].strip()}, #丟參數進去function
+        op_kwargs={'stock' : i['stock'],'bs' : i['bs'], 'price': i['price']}, #丟參數進去function
         dag=dag #把上方的設定檔案丟入主程式
         )
     
