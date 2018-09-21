@@ -23,9 +23,9 @@ from linebot.models import *
 ###############################################################################
 
 #自己APP的token
-token='/GzF5FaWE84PdvoEueGli99HQ8ULLONIXU34HV8zQQgTqhIla+yFVo62cwBCK2gkr5ATBRFylr1pu/lkUjKqv7/fpBHU1OMfU0cS/cSsYOiJkCPtl5DNG9OmI2tsPvBPFOGPWBV7dg7NA2mmSpg9agdB04t89/1O/w1cDnyilFU='
+token=''
 #自己的ID
-ID='Uae7bf560936f7d9e5bfc6c1aafffd917'
+ID=''
 
 ########### dag所有參數，就放在這裡面 (設定airflow的設定檔)###########
 args = {
